@@ -4,6 +4,7 @@ from time import sleep
 from urllib.parse import urlencode
 from pathlib import Path
 import requests
+import os
 
 def enviar_rest(url: str, data: dict | str, optional_headers: dict | None = None, timeout: int = 30) -> dict:
     if isinstance(data, dict):
@@ -103,6 +104,8 @@ def obter_produtos(token: str,
                 "saldo": int(saldo)
             })
             _log(f"({idx}/{total}) ✔️ Produto {prod_id} processado.")
+
+
         else:
             _log(f"({idx}/{total}) ⚠️ Produto {prod_id} não encontrado.")
 
@@ -111,5 +114,7 @@ def obter_produtos(token: str,
     if lista_precos_saldo:
         salvar_em_arquivo(lista_precos_saldo, arquivo_saida)
         _log(f"🏁 Concluído: {len(lista_precos_saldo)} registros salvos em '{arquivo_saida}'.")
+        os.remove(arquivo_estoque)
+
     else:
         _log("Nenhum registro válido para salvar.")

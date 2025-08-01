@@ -336,7 +336,7 @@ class EstoqueApp:
             self.log(f"Erro ao salvar arquivo local: {e}")
 
 def iniciar_aplicacao():
-    TOKEN = ''
+    TOKEN = 'faae0168b12e99a07d0f7b58c81830baec7e6682'
     root = tk.Tk()
     EstoqueApp(root, TOKEN)
     root.mainloop()
